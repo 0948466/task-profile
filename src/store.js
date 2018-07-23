@@ -35,7 +35,22 @@ export default new Vuex.Store({
           state.experience.splice(i, 1)
         }
       }
-    }
+    },
+    changeName(state, newName) {
+      state.name = newName
+    },
+    changeAddress(state, newAddress) {
+      state.address = newAddress
+    },
+    changeLang(state, newLang) {
+      state.lang = newLang
+    },
+    changeSkills(state, newExperience) {
+      state.experience.push({
+        skill: newExperience.skill,
+        years: newExperience.years
+      })
+    },
   },
   actions: {}
 })
