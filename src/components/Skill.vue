@@ -1,11 +1,11 @@
 <template>
-  <section class="skill" ref="skill">
-    <div class="skill__icon-del"
-         :style="{width: iconDelWidth}"
-         @click="onIconDelClick"
-    ></div>
-    {{skill}}
-  </section>
+    <section class="skill" ref="skill" :style="{backgroundColor: getBackgroundColor}">
+        <div class="skill__icon-del"
+             :style="{width: iconDelWidth}"
+             @click="onIconDelClick"
+        ></div>
+        {{skill}}
+    </section>
 </template>
 
 <script>
@@ -33,40 +33,61 @@
       onIconDelClick() {
         this.$store.commit('deleteSkill', this.skill);
       }
+    },
+    computed: {
+      getBackgroundColor() {
+        return `rgba(0, 0, 0, ${parseInt(this.experience) / 6})`
+      }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  @import "../scss/mixins.scss";
+    @import "../scss/mixins.scss";
 
-  .skill {
-    position: relative;
-    padding: 0.2em 10px;
-    margin-right: 1%;
-    @include responsiveFont(14px, 12px);
-    line-height: 1.5;
-    text-transform: uppercase;
-    color: #fff;
-    background-color: black;
-    border-radius: 3px;
-    cursor: default;
-    &:hover {
-      .skill__icon-del {
-        position: absolute;
-        display: block;
-        top: 20%;
-        right: 5px;
-        height: 60%;
-        border-radius: 50%;
-        background-color: #fa726f;
-        cursor: pointer;
-      }
-    }
+    .skill {
+        position: relative;
+        padding: 0.2em 10px;
+        margin: 0 1% 2.5%;
+        @include responsiveFont(14px, 12px);
+        line-height: 1.5;
+        text-transform: uppercase;
+        color: #fff;
+        background-color: black;
+        border-radius: 3px;
+        cursor: default;
+        &:hover {
+            .skill__icon-del {
+                position: absolute;
+                display: block;
+                top: 20%;
+                right: 5px;
+                height: 60%;
+                border-radius: 50%;
+                background-color: #fa726f;
+                cursor: pointer;
+                &::before,
+                &::after {
+                    content: "";
+                    top: 45%;
+                    left: 25%;
+                    position: absolute;
+                    width: 50%;
+                    height: 2px;
+                    background-color: #fff;
+                }
+                &::before {
+                    transform: rotate(45deg);
+                }
+                &::after {
+                    transform: rotate(-45deg);
+                }
+            }
+        }
 
-    &__icon-del {
-      display: none;
+        &__icon-del {
+            display: none;
+        }
     }
-  }
 
 </style>
