@@ -1,7 +1,7 @@
 <template>
     <section class="profile-photo-skills">
         <div class="profile-photo-skills__first">
-            <img :src="imgSrc" alt="Фотография профиля">
+            <img :src="imgSrc" alt="Profile photo">
         </div>
         <div class="profile-photo-skills__second">
             <div class="profile-photo-skills__top">
